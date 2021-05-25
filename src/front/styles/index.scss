@@ -1,3 +1,39 @@
 /* 
     General Styles
 */
+.scrolling-wrapper{
+    overflow-x: auto;
+    scrollbar-color: #f9307b;
+   background-color:#f8f9fa;
+ } 
+
+h1{
+    color: #4682B4;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+
+.footer{
+    margin-top: "20%"
+}
+
+/*.card-img-top{
+    height: 250px;
+    width: 250px;
+}*/
+
+.card-img-top {
+   height: 300px;
+}
+
+
+img:hover{
+width: auto;
+ //-ms-transform: scale(1.5); /* IE 9 */
+  //-webkit-transform: scale(1.5); /* Safari 3-8 */
+transform: scale(1.5); 
+}
+
+/*.card-body{
+    flex-grow:0;
+}*/
+

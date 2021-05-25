@@ -1,17 +1,45 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 
 export const Navbar = () => {
+	const { store, actions } = useContext(Context);
+	console.log(store.favorites);
+	const [dropdownOpen, setDropdownOpen] = useState(false);
+
+	const toggle = () => setDropdownOpen(prevState => !prevState);
+
 	return (
 		<nav className="navbar navbar-light bg-light mb-3">
-			<Link to="/">
-				<span className="navbar-brand mb-0 h1">React Boilerplate</span>
+			<Link className="navbar-brand" to="/">
+				<img
+					src="https://png.pngitem.com/pimgs/s/341-3413907_star-wars-logo-black-and-white-hd-png.png"
+					width="150px"
+					style={{ background: "#f8f9ed" }}
+				/>
 			</Link>
-			<div className="ml-auto">
-				<Link to="/demo">
-					<button className="btn btn-primary">Check the Context in action</button>
-				</Link>
-			</div>
+
+			<Dropdown className="mx-5" isOpen={dropdownOpen} toggle={toggle}>
+				<DropdownToggle caret>Favorites {store.favorites.length}</DropdownToggle>
+				<DropdownMenu>
+					{store.favorites.map((element, i) => {
+						return (
+							<li key={i}>
+								<DropdownItem>
+									{element.name}
+									<button
+										className="remove"
+										style={{ marginLeft: "10px" }}
+										onClick={() => actions.deleteFavorites(i)}>
+										<i className="fas fa-trash" />
+									</button>
+								</DropdownItem>
+							</li>
+						);
+					})}
+				</DropdownMenu>
+			</Dropdown>
 		</nav>
 	);
 };
